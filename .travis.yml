@@ -5,3 +5,12 @@ service:
 script:
   - docker build -t tgandre/node .
   - docker images tgandre/node
+
+  before_deploy:
+  - docker login -u tgandre -p Admissionno94312
+
+deploy:
+  provider: script
+  script: docker push tgandre/node
+  on:
+    branch: master
